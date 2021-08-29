@@ -6495,10 +6495,10 @@ input[type=checkbox] { position: relative; z-index: 20; }
 #paperarea { min-height: 120px; display: none; }
 #paperarea .keyarea { border: 2px solid #0fcb97; border-top: 0; }
 #paperarea .keyarea.art { display: block; height: auto; border: 0; font-family: Ubuntu, Arial; padding: 0; margin: 0; }
-#paperarea .artwallet .papersvg { width: 781px; border: 0; margin: 0; padding: 12px; left: 0; }
-#paperarea .artwallet .qrcode_public { top: 542px; left: 546px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+#paperarea .artwallet .papersvg { width: 405px; border: 0; margin: 0; padding: 12px; left: 0;}
+#paperarea .artwallet .qrcode_public { top: 281px; left: 282.5px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
 		                                padding: 5px 5px 2px 5px; }
-#paperarea .artwallet .qrcode_private {top: 170px; left: 149px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+#paperarea .artwallet .qrcode_private {top: 87px; left: 77px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
 		                                padding: 5px 5px 2px 5px;
     -webkit-transform-origin:top left; -webkit-transform:rotate(0deg);
 		-moz-transform-origin:top left;    -moz-transform:rotate(0deg);
@@ -6886,6 +6886,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 
   #stepThreePrint {
   	display: none !important;
+
   }
 
   .lock-ctn {
@@ -6929,6 +6930,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 	border-top:none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+
 }
 
 
@@ -6970,7 +6972,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 			c0,0.8457031,0.6870117,1.5322266,1.5332031,1.5322266h36.7822266c0.8457031,0,1.5332031-0.6865234,1.5332031-1.5322266
 			C49.043457,51.2617188,48.355957,50.5751953,47.5102539,50.5751953"></path>
 		</svg>
-			<span>Bitcoin Cash (BCH) GiftMint Cüzdanı</span>
+			<span>Bitcoin Cash (BCH) GiftMint Hediye Cüzdanı</span>
 		</h1>
 	</header>
 	<div id="busyblock"></div>
@@ -6995,7 +6997,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 		<div id="generate">
 			<span id="generatelabelbitcoinaddress">Bitcoin Cash (BCH) Adresi Üretiliyor...</span><br /><br />
 			<span id="generatelabelmovemouse">Ekstra rastgelelik eklemek için imleci hareket ettir... </span><span style="display:none;" id="mousemovelimit"></span><br /><br />
-			<span id="generatelabelkeypress">Mouse yok mu? Rastgelelik eklemek için bir şeyler yaz</span>: <input type="text" id="generatekeyinput" placeholder="&nbsp;Type here" onkeydown="ninja.seeder.seedKeyPress(event);" /><br />
+			<span id="generatelabelkeypress">Mouse yok mu? Rastgelelik eklemek için bir şeyler yaz</span>: <input type="text" id="generatekeyinput" placeholder="&nbsp;Buraya yaz" onkeydown="ninja.seeder.seedKeyPress(event);" /><br />
 			<div id="seedpooldisplay"></div>
 		</div>
 
@@ -7285,47 +7287,10 @@ input[type=checkbox] { position: relative; z-index: 20; }
 						    <option value="vietnam">Vietnam</option>
   						</select>
   					</span>
-  					<span><label id="denomLabel">BCH miktarı</label>
-							<select onchange="denomChange(this.value)" id="denomSelector" name="denomMenu">
-								<option value="any">Any amount</option>
-						    <option value=".05">0.05 BCH</option>
-						    <option value=".1">0.1 BCH</option>
-						    <option value=".25">0.25 BCH</option>
-						    <option value=".5">0.5 BCH</option>
-						    <option value=".75">0.75 BCH</option>
-						    <option value="1">1 BCH</option>
-						    <option value="5">5 BCH</option>
-						    <option value="10">10 BCH</option>
-  						</select>
-  					</span>
 						<span><label id="paperlabeladdressestogenerate" for="paperlimit">Üretilecek cüzdan sayısı:</label> <input onchange="ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);" type="text" id="paperlimit" /></span>
-						<span><button id="advancedcommandbtn" onclick="toggleAdvanced()">Gelişmiş Seçenekler</button></span>
+
 
 						<script>
-							function toggleAdvanced() {
-							    var advancedDisplay = document.getElementById("paperadvancedcommands")
-							    var advancedBtnTitle = document.getElementById("advancedcommandbtn")
-							    var walletDisplayed = document.getElementById("paperkeyarea")
-							    if (advancedDisplay.style.display === "none") {
-							        advancedDisplay.style.display = "block"
-							        advancedBtnTitle.innerHTML = "Hide Advanced Settings"
-							        walletDisplayed.style.display = "none"
-							        // Hide Step 3 Print; show when wallet is generated
-							        document.getElementById('stepThreePrint').style.display="none"
-
-							    } else {
-							        advancedDisplay.style.display = "none"
-							        advancedBtnTitle.innerHTML = "Advanced Settings"
-							        walletDisplayed.style.display = "block"
-
-							        // Uncheck the encryption option and regenerate an unencrypted wallet
-							        document.getElementById("paperencrypt").checked = false
-							        // This doesn't disable the passphrase box or encryption though when you reset it with code, so do it manually
-							        //<input type="checkbox" id="paperencrypt" onchange="ninja.wallets.paperwallet.toggleEncrypt(this);" />
-							        ninja.wallets.paperwallet.toggleEncrypt(document.getElementById('paperencrypt'))
-							        generateFromAdvanced()
-							    }
-							}
 
 							function toggleSelectedDesign(element) {
 								// Hide all confirm buttons
@@ -7384,23 +7349,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 								ninja.wallets.paperwallet.build(document.getElementById('paperlimit').value * 1, document.getElementById('paperlimitperpage').value * 1, !document.getElementById('paperart').checked, document.getElementById('paperpassphrase').value);
 							}
 
-							function denomChange(denomLabel) {
-								var denomLabels = document.getElementsByClassName('denomination')
 
-								for (i = 0; i < denomLabels.length; i++) {
-
-									if (denomLabel == 'any') {
-										denomLabels[i].innerHTML = ''
-									}
-									else if(denomLabel < 1) {
-										denomLabels[i].innerHTML = '0' + denomLabel + ' BCH'
-									}
-									else {
-										denomLabels[i].innerHTML = denomLabel + ' BCH'
-									}
-
-								}
-							}
 						</script>
 
 
@@ -7432,11 +7381,7 @@ input[type=checkbox] { position: relative; z-index: 20; }
 				</div>
 				<div id="paperkeyarea"></div>
 				<div id="singlesafety">
-						<p id="singletip1"><b>A Bitcoin Cash (BCH) wallet</b> is as simple as a single pairing of a Bitcoin Cash (BCH) address with its corresponding Bitcoin Cash (BCH) private key. Such a wallet has been generated for you in your web browser and is displayed above.</p>
-						<p id="singletip2"><b>To safeguard this wallet</b> you must print or otherwise record the Bitcoin Cash (BCH) address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you are familiar with PGP you can download this all-in-one HTML page and check that you have an authentic version from the author of this site by matching the SHA256 hash of this HTML with the SHA256 hash available in the signed version history document linked on the footer of this site. If you leave/refresh the site or press the "Generate New Address" button then a new private key will be generated and the previously displayed private key will not be retrievable.	Your Bitcoin Cash (BCH) private key should be kept a secret. Whomever you share the private key with has access to spend all the Bitcoin Cash (BCH) associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.</p>
-						<p id="singletip3"><b>Add funds</b> to this wallet by instructing others to send Bitcoin Cash (BCH) to your Bitcoin Cash (BCH) address.</p>
-						<p id="singletip4"><b>Check your balance</b> by going to <a href="https://explorer.bitcoin.com/">explorer.bitcoin.com</a> and entering your Bitcoin Cash (BCH) address.</p>
-						<p id="singletip5"><b>Spend your Bitcoin Cash (BCH)</b> by downloading the <a href="https://wallet.bitcoin.com/">Bitcoin.com wallet</a> and sweeping the full balance of your private key into your account. When you perform a transaction your change will be sent to another Bitcoin Cash (BCH) address within the p2p client wallet. You must then backup the p2p client wallet and keep it safe as your remaining Bitcoin Cash (BCH) will be stored there. Satoshi advised that one should never delete a wallet.</p>
+
 					</div>
 			</div>
 
@@ -7782,8 +7727,8 @@ input[type=checkbox] { position: relative; z-index: 20; }
 				</div>
 			</div>
 			<div class="authorpgp">
-				<span class="item"><a href="https://github.com/Bitcoin-com/paperwallet.bitcoin.com/" target="_blank" id="footerlabelgithub">Github</a>
-						(<a href="https://github.com/Bitcoin-com/paperwallet.bitcoin.com/archive/master.zip" target="_blank" id="footerlabelgithubzip">zip</a>)</span>
+				<span class="item"><a href="https://github.com/Bitcoin-com/paperwallet.bitcoin.com/" target="_blank" id="footerlabelgithub">Github(source)</a>
+						<a href="https://github.com/giftmint/giftmint.github.io" target="_blank" id="footerlabelgithub">Github(giftmint.github.io)</a></span>
 
 			</div>
 			<div class="copyright">
@@ -10016,7 +9961,7 @@ ninja.foreachSerialized = function (collection, whatToDo, onComplete) {
 		"vanityalertinvalidinputpublickeysmatch": "Entrada inválida. As chaves públicas de ambas as entradas são iguais. Você deve inserir duas chaves diferentes.",
 		"vanityalertinvalidinputcannotmultiple": "Entrada inválida. Não é possível multiplicar duas chaves públicas. Clique em 'Somar' e some duas chaves públicas para adquirir um endereço bitcoin.",
 		"vanityprivatekeyonlyavailable": "Disponível apenas quando se combinam duas chaves privadas",
-		"vanityalertinvalidinputprivatekeysmatch": "Entrada inválida. As chaves privadas de ambas as entradas são iguais. Você deve inserir duas chaves diferentes.",
+		"vanityalertinvalidinqrcode_publicputprivatekeysmatch": "Entrada inválida. As chaves privadas de ambas as entradas são iguais. Você deve inserir duas chaves diferentes.",
 
 		// header and menu html
 		"tagline": "Gerador local de carteiras Bitcoin usando Javascript de código aberto",
@@ -10760,8 +10705,7 @@ ninja.wallets.paperwallet = {
 		var image;
 		var imgMenu = document.getElementById('walletSelector')
 		var walletIMG = imgMenu.options[imgMenu.selectedIndex].value;
-		var denomMenu = document.getElementById('denomSelector');
-		var denomMenuBCH = denomMenu.options[denomMenu.selectedIndex].value;
+
 		// Default colors
 		var addressColor = '#ffffff;'
 		var lockArtColor = '#0fcb97;'
@@ -10860,39 +10804,7 @@ ninja.wallets.paperwallet = {
     }
 
 
-		// BCH denomination, default is any, so blank
-    var denomBCH = ''
-		switch(denomMenuBCH) {
-			case 'any':
-			  denomBCH = ''
-			  break;
-			case '.05':
-			  denomBCH = '0.05 BCH'
-			  break;
-			case '.1':
-			  denomBCH = '0.1 BCH'
-			  break;
-			case '.25':
-			  denomBCH = '0.25 BCH'
-			  break;
-			case '.5':
-			  denomBCH = '0.5 BCH'
-			  break;
-			case '.75':
-			  denomBCH = '0.75 BCH'
-			  break;
-			case '1':
-			  denomBCH = '1 BCH'
-			  break;
-			case '5':
-			  denomBCH = '5 BCH'
-			  break;
-			case '10':
-			  denomBCH = '10 BCH'
-			  break;
-			default:
-			  denomBCH = ''
-			}
+
 
     // Code and CSS for Bip38 Encrypted wallet
 		if (ninja.wallets.paperwallet.encrypt) {
@@ -10930,11 +10842,6 @@ ninja.wallets.paperwallet = {
 								//"<div class='" + keyelement + "' id='" + keyelement + i + "'></div>" +
 								"<svg height='42' width='392' style='fill:" + addressColor + "' class='" + keyelement + "'><text id='" + keyelement + i + "' x='0' y='15' font-size='10px' fill='" + addressColor + "'></text></svg>" +
 
-								"<div class='lock-ctn'>" +
-						    	"<div class='lock-art'>" +
-							    "</div>" +
-						    "<div class='bip-encrypted' style='display:" + encryptedDisplay + "background-color:" + lockArtBgColor +" color:" + lockArtColor + "'>BIP38 ENCRYPTED</div>" +
-						    "<div class='denomination' style='color:" + lockArtColor + "'>" + denomBCH + "</div>" +
 							  "</div>" +
 
 							"</div>";
@@ -10945,7 +10852,7 @@ ninja.wallets.paperwallet = {
 		var keyValuePair = {};
 		keyValuePair["qrcode_public" + idPostFix] = bitcoinAddress;
 		keyValuePair["qrcode_private" + idPostFix] = privateKey;
-		ninja.qrCode.showQrCode(keyValuePair, 2.5);
+		ninja.qrCode.showQrCode(keyValuePair, 1.5);
 		document.getElementById("btcaddress" + idPostFix).innerHTML = bitcoinAddress;
 
 		if (ninja.wallets.paperwallet.encrypt) {
