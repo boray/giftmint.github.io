@@ -1,0 +1,9 @@
+.tweetrow {
+  display:flex;
+
+}
+.twitter-tweet-1 {  order: 1;
+  width:50%;}
+
+.twitter-tweet-2 {  order: 2;
+  width:50%;}
